@@ -1,0 +1,10 @@
+.date-block input {
+		outline: none;
+	}
+	.error, .error:focus {
+		border: 2px solid red;
+	}
+
+	.good-to-go, .good-to-go:focus {
+		border: 2px solid green;
+	}
