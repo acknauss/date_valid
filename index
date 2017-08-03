@@ -1,21 +1,38 @@
-<?
+<? 
 	if(isset($_POST['ref_date'])) {
 		$ref_date = $_POST['ref_date'];
+		$genesis = $ref_date;
+	} else {
+		$ref_date = '';
+	}
+
+if(isset($_POST['birth_date'])) {
+		$b_date = $_POST['birth_date'];
+		$genesis_b = $b_date;
 	} else {
 		$ref_date = '';
 	}
 	//$start_date = $_POST['start_date'];
-	$genisis = $ref_date;	
 	$date_array=(date_parse_from_format("m-d-Y", $ref_date));
-	//print_r($date_array);
-	print "\n";
 	$ref_date = $date_array['year'] . "-" . $date_array['month']. "-". $date_array['day'] ;
-	print "\n";
 	$date_year = $date_array['year'];
 	$this_year = date('Y');
-	
 	?>
 
+<div class="parent clearfix">
+	<div class="svg-wrapper">
+	  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+	    <rect class="shape" height="60" width="320" />
+	  </svg>
+	   <div class="text">Hover Over This</div>
+	</div>
+	<br>
+	<div class="svg-go">
+	  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+	    <rect class="continue" height="60" width="320" />
+	  </svg>
+	   <div class="text">Hover Over This</div>
+	</div>
 <div class="date-block">
 <form class="service-update-form" id="new-service-record" method="post">
 	<table>
@@ -23,13 +40,13 @@
 		<tr class="service_add_row new_row_service_referral_date"  id="service_add_referral_date">
 			<td>Validate Any Date</td>
 			<td>
-				<input id="valid_any" onKeyUp="valid_date(this, 'reg');" type="text" name="ref_date"  class="datepick add_referral_date fill_record_service_referral_date">
+				<input id="valid_any" onKeyUp="valid_date(this, 'reg');" type="text" name="ref_date"  class="datepick add_referral_date fill_record_service_referral_date" value="<?=$ref_date?>">
 			</td>
 		</tr>
 		<tr class="service_add_row new_row_service_referral_date">
 			<td>Only Accept 4-digit Year</td>
 			<td>
-				<input id="valid_birthdate" onKeyUp="valid_date(this, 'birthdate');" type="text" name="birth_date"  class="datepick birthdate">
+				<input id="valid_birthdate" onKeyUp="valid_date(this, 'birthdate');" type="text" name="birth_date"  class="datepick birthdate" value="<?=$b_date?>"/>
 			</td>
 		</tr>
 		<tr>
@@ -39,9 +56,12 @@
 		</tr>
 	</table>
 </form>
-</div>
-<div class="outputs">
+ <div class="outputs">
 		<p> input was: <?=$genesis?> </p><br>
-		<p> this date will be sent to the database (in YYYY-MM-DD) as : <?= Date("Y-m-d", strtotime($ref_date))?></p>	
+		<p> this date will be sent to the database (in YYYY-MM-DD) as : <?= Date("Y-m-d H:i:s", strtotime($ref_date))?></p>
+		<p> second input was: <?=$genesis_b?> </p><br>
+	</div>	
+
 </div>
-	
+
+</div>
